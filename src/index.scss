@@ -1,0 +1,24 @@
+@import  "_colors";
+body {
+  margin: 0px;
+}
+p,a, h1, h2 {
+  font-family: 'Roboto', sans-serif;
+}
+.row-items {
+  display: flex;
+  justify-content: center;
+}
+.rnd-btn {
+  padding: 10px 20px 10px 20px;
+  margin: 15px;
+  border: 0px;
+  border-radius: 10px;
+  text-decoration: none;
+  background: $color1;
+  color: $color2;
+  &:hover{
+    background: #033d9b;
+    cursor: pointer;
+  }
+}

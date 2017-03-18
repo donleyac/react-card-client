@@ -1,0 +1,15 @@
+@import '../../_colors.scss';
+
+#home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  h1 {
+    color: $color1;
+    font-weight: 400;
+    font-size: 50px;
+  }
+
+}

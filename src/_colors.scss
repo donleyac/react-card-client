@@ -1,0 +1,10 @@
+$color1: #2176ff; //light blue
+$color2: white;
+$color3: #f88b6b; //orange
+$color4:#dbdbdb; //grey accent
+$color5: #093059; //dark blue
+$color6: #f7f7f7; //lighter grey
+$outline: -.5px 0 $color4, 0 .5px $color4, .5px 0 $color4, 0 -.5px $color4;
+$gradient1: linear-gradient(to bottom, $color1, $color5);
+$gradient2: linear-gradient(to bottom, #033d9b, #1c2830);
+$gradient3: linear-gradient(to bottom, $color5, black);
