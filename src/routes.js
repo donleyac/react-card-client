@@ -1,12 +1,13 @@
 import React from 'react';
-import {Router, Route, IndexRoute, hashHistory} from 'react-router';
+import {HashRouter as Router, Route} from 'react-router-dom'
 import Home from './Pages/Home/index.js';
 import Config from './Pages/Config/index.js';
-
-export default (
-  <Router history={hashHistory}>
-    <Route path ='/' component = {Container}>
-      <IndexRoute component={Home} />
-    </Route>
-  </Router>
+import Test from './Pages/Test/index.js';
+export default(
+    <Router>
+        <div>
+            <Route exact path='/' component={Home}/>
+            <Route path='/test' component={Test}/>
+        </div>
+    </Router>
 );

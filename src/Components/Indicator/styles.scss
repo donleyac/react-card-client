@@ -1,0 +1,19 @@
+.indicators {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  p {
+    margin: 0px;
+    text-transform: capitalize;
+  }
+  .input-items {
+    display: flex;
+    align-items: center;
+  }
+  input {
+    text-align: center;
+    margin: 5px;
+    width: 50px;
+    height: 20px;
+  }
+}

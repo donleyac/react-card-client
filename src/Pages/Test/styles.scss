@@ -1,0 +1,12 @@
+.frame {
+  height: 100vh;
+  display: flex;
+  .left-col, .right-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .center-col {
+    flex-grow: 1;
+  }
+}

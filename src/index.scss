@@ -1,6 +1,9 @@
 @import  "_colors";
 body {
   margin: 0px;
+  * {
+    outline: 1px solid black;
+  }
 }
 p,a, h1, h2 {
   font-family: 'Roboto', sans-serif;
@@ -12,6 +15,24 @@ p,a, h1, h2 {
 .rnd-btn {
   padding: 10px 20px 10px 20px;
   margin: 15px;
+  border: 0px;
+  border-radius: 10px;
+  text-decoration: none;
+  background: $color1;
+  color: $color2;
+  &:hover{
+    background: #033d9b;
+    cursor: pointer;
+  }
+}
+.circle-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  width: 20px;
+  height: 20px;
+  margin: 5px;
   border: 0px;
   border-radius: 10px;
   text-decoration: none;

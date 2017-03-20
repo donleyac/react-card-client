@@ -1,0 +1,12 @@
+.counter {
+  display: flex;
+  align-items: center; 
+  .label{
+    text-transform: capitalize;
+    margin: 5px;
+    flex-grow: 1;
+  }
+  .icon {
+    color: red;
+  }
+}

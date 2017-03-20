@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './styles.scss';
 
-class ConfigForm extends React.Component {
+export class ConfigForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,4 +44,3 @@ class ConfigForm extends React.Component {
     );
   }
 }
-module.export =  ConfigForm;
