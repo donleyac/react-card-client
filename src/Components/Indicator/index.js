@@ -22,9 +22,9 @@ export default class Indicator extends Component {
             <div className="indicators">
                 <p>{this.props.label}</p>
                 <div className="input-items">
-                    <div className="circle-btn" onClick={() => this.handleClick(-1)}>-</div>
+                    <i className="material-icons btn" onClick={() => this.handleClick(-1)}>chevron_left</i>
                     <input type="text" value={this.state.value} onChange={this.handleChange}/>
-                    <div className="circle-btn" onClick={() => this.handleClick(1)}>+</div>
+                    <i className="material-icons btn" onClick={() => this.handleClick(1)}>chevron_right</i>
                 </div>
 
             </div>

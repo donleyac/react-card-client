@@ -8,12 +8,14 @@ import InitialState from '../../initial.json';
 import './styles.scss';
 
 export default function(props){
-  let opp_indicators = InitialState.playersById.opponent.indicators;
-  let you_indicators = InitialState.playersById.you.indicators;
+  let playersById = InitialState.playersById;
+  let collections = InitialState.collections;
   let counters = InitialState.counters;
   let opp_hand_size = InitialState.collections.hand_opp.content.length;
   const CARD_BACK = '🂠';
+  const ID = 'you';
 
+  //Opponents hand size
   let rows=[];
   for (let i=0; i<opp_hand_size; i++){
     rows.push(<Card>{CARD_BACK}</Card>);
@@ -21,33 +23,36 @@ export default function(props){
   return (
     <div className="frame">
       <div className="left-col">
-        <div className="indicators">
-          <p>Opponent Indicators</p>
-          {Object.keys(opp_indicators).map(function(label,value){
-            return <Indicator label={label}>{opp_indicators[label]}</Indicator>
+          {/* Output indicators */}
+          {Object.keys(playersById).map(function(id){
+            return (<div key={id} className={id}>
+                      <p className="section-name">{playersById[id].name+"'s Indicators"}</p>
+                      {Object.keys(playersById[id].indicators).map(function(label){
+                        return (
+                          <Indicator key={label} label={label}>{playersById[id].indicators[label]}</Indicator>
+                        )
+                      })}
+                    </div>)
           })}
-        </div>
-        <div className="counters">
-          {counters.map(function(type){
-            return <Counter label={type}>💙</Counter>
-          })}
-        </div>
       </div>
       <div className="center-col">
-        <div className="opp-hand">
-          {rows}
-        </div>
+        <span className="collections">
+          {Object.keys(collections).map(function(type){
+            return(
+            <span>
+              <span>{type}: {collections[type].content.length}</span>
+              <span><span>Control:</span>{collections[type].control.map(function(who){
+                return <span>{who}</span>
+              })}</span>
+            </span>
+          )
+          })}
+        </span>
       </div>
       <div className="right-col">
         <div className="counters">
           {counters.map(function(type){
             return <Counter label={type}>💙</Counter>
-          })}
-        </div>
-        <div className="indicators">
-          <p>Your Indicators</p>
-          {Object.keys(you_indicators).map(function(label,value){
-            return <Indicator label={label}>{you_indicators[label]}</Indicator>
           })}
         </div>
       </div>

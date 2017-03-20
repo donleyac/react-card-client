@@ -9,4 +9,11 @@
   .center-col {
     flex-grow: 1;
   }
+  .collections {
+    display: flex;
+    justify-content: space-around;
+    span {
+      padding: 5px;
+    }
+  }
 }

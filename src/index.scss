@@ -8,9 +8,21 @@ body {
 p,a, h1, h2 {
   font-family: 'Roboto', sans-serif;
 }
+.section-name {
+  text-align: center;
+  padding: 10px;
+}
 .row-items {
   display: flex;
   justify-content: center;
+}
+.btn {
+  background: $color1;
+  color: $color2;
+  &:hover{
+    background: #033d9b;
+    cursor: pointer;
+  }
 }
 .rnd-btn {
   padding: 10px 20px 10px 20px;
