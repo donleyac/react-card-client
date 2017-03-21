@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PureComponent, PropTypes} from 'react';
 import './styles.scss'
-export default class Indicator extends Component {
+export default class Indicator extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -33,5 +33,5 @@ export default class Indicator extends Component {
 }
 
 Indicator.propTypes = {
-    value: PropTypes.number
+    label: React.PropTypes.string.isRequired
 };
