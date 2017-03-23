@@ -18,13 +18,22 @@ export default class Game extends PureComponent {
     const ID = 'you';
 
     let indic_list = [];
+    let coll_list = [];
 
     //Indicators
     playersById.forEach(function(value, key, map){
       indic_list.push(<p className="section-name">{playersById.get(key).get('name')+"'s Indicators"}</p>)
       playersById.get(key).get('indicators').forEach(function(value, key, map){
           indic_list.push(<Indicator label={key}>{value}</Indicator>)
-      })
+      });
+    });
+
+    //Collections
+    collections.forEach(function(value, key, map) {
+      coll_list.push(<span>{key}: {collections.get(key).get("content").size}</span>);
+      collections.get(key).get("control").forEach(function(value, key, map){
+          coll_list.push(<span>Control: {value}</span>);
+      });
     });
 
     return (
@@ -32,18 +41,9 @@ export default class Game extends PureComponent {
           <div className="left-col">
             {indic_list}
           </div>
-          {/* <div className="center-col">
+          <div className="center-col">
             <span className="collections">
-              {Object.keys(collections).map(function(type){
-                return(
-                <span>
-                  <span>{type}: {collections[type].content.length}</span>
-                  <span><span>Control:</span>{collections[type].control.map(function(who){
-                    return <span>{who}</span>
-                  })}</span>
-                </span>
-              )
-              })}
+              {coll_list}
             </span>
           </div>
           <div className="right-col">
@@ -52,7 +52,7 @@ export default class Game extends PureComponent {
                 return <Counter label={type}>💙</Counter>
               })}
             </div>
-          </div> */}
+          </div>
         </div>
       )
   }
