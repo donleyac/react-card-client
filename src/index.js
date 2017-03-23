@@ -9,11 +9,14 @@ import InitialState from './initial.json';
 import './index.scss';
 
 const store = createStore(reducer);
-store.dispatch({type: 'SET_STATE', state: InitialState});
+// store.dispatch({type: 'SET_STATE', state: InitialState});
 
 const socket = io(`${location.protocol}//${location.hostname}:8090`);
+socket.on('state', state =>
+  store.dispatch({type: 'SET_STATE', state})
+);
 
 ReactDOM.render(
-    <Provider store={store}>
+<Provider store={store}>
     {routes}
 </Provider>, document.getElementById('root'));
