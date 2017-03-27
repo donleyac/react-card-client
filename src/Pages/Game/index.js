@@ -59,6 +59,7 @@ export default class Game extends PureComponent {
 }
 
 function mapStateToProps(state) {
+  console.log("Component State",state);
   return {
     playersById: state.get('playersById'),
     collections: state.get('collections'),

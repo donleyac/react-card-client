@@ -1,5 +1,5 @@
 export function setState(state) {
-  return {type: 'SET_STATE',state};
+  return {type: 'SET_STATE',state: state};
 }
 
 export function modIndicator(state, playerId, indicator, modifier) {

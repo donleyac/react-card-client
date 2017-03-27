@@ -1,4 +1,6 @@
-export default store => next => action => {
-  console.log('in middleware', action);
-  return next(action);  
+export default socket => store => next => action => {
+  //TODO this is sending too many requests
+  // socket.emit('action', action);
+  console.log('middleware', action);
+  return next(action);
 }
