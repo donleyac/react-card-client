@@ -11,11 +11,6 @@ import InitialState from './initial.json';
 import './index.scss';
 import {fromJS} from 'immutable';
 
-
-
-// const store = createStore(reducer);
-// store.dispatch({type: 'SET_STATE', state: InitialState});
-
 const socket = io(`${location.protocol}//${location.hostname}:8090`);
 const createStoreWithMiddleware = applyMiddleware(
   remoteActionMiddleware(socket)
@@ -25,8 +20,8 @@ const store = createStoreWithMiddleware(reducer);
 socket.on('state', state => console.log("From Store", state));
 console.log("From JSON",InitialState);
 
-// socket.on('state', state => store.dispatch(setState(state)));
-socket.on('state',store.dispatch(setState(InitialState)));
+socket.on('state', state => store.dispatch(setState(state)));
+// socket.on('state',store.dispatch(setState(InitialState)));
 
 
 ReactDOM.render(
