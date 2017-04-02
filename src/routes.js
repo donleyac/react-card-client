@@ -7,6 +7,7 @@ export default(
     <Router>
         <div>
             <Route exact path='/' component={Home}/>
+            <Route path='/config' component={Config}/>
             <Route path='/game' component={GameContainer}/>
         </div>
     </Router>

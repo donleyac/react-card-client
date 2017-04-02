@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './styles.scss';
 
-export class ConfigForm extends React.Component {
+export class ConfigForm extends Component {
   constructor(props) {
     super(props);
     this.state = {

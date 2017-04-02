@@ -1,21 +1,17 @@
 import React, {PureComponent, PropTypes} from 'react';
-import Card from '../../Components/Card/index.js';
-import Collection from '../../Components/Collection/index.js';
+// import Card from '../../Components/Card/index.js';
+// import Collection from '../../Components/Collection/index.js';
 import Indicator from '../../Components/Indicator/index.js';
 import Counter from '../../Components/Counter/index.js';
 import {connect} from 'react-redux';
+import * as actionCreators from './../../action_creators.js';
 import './styles.scss';
 
 export default class Game extends PureComponent {
-  constructor(props) {
-      super(props);
-  }
   render() {
     let playersById = this.props.playersById;
     let collections = this.props.collections;
     let counters = this.props.counters;
-    const CARD_BACK = '🂠';
-    const ID = 'you';
 
     let indic_list = [];
     let coll_list = [];
@@ -58,6 +54,11 @@ export default class Game extends PureComponent {
   }
 }
 
+Game.PropTypes = {
+  playersById:  PropTypes.object.isRequired,
+  collections: PropTypes.object.isRequired,
+  counters: PropTypes.object.isRequired
+}
 function mapStateToProps(state) {
   console.log("Component State",state);
   return {
@@ -66,4 +67,4 @@ function mapStateToProps(state) {
     counters: state.get('counters')
   };
 }
-export const GameContainer = connect(mapStateToProps)(Game);
+export const GameContainer = connect(mapStateToProps, actionCreators)(Game);

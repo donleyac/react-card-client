@@ -1,9 +1,6 @@
 import React, {PureComponent, PropTypes} from 'react';
 import './styles.scss'
 export default class Counter extends PureComponent {
-    constructor(props) {
-        super(props);
-    }
     render() {
         return (
           <div className="counter">
@@ -15,5 +12,5 @@ export default class Counter extends PureComponent {
 }
 
 Counter.propTypes = {
-    label: React.PropTypes.string.isRequired
+    label: PropTypes.string.isRequired
 };

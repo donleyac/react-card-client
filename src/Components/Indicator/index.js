@@ -33,5 +33,5 @@ export default class Indicator extends PureComponent {
 }
 
 Indicator.propTypes = {
-    label: React.PropTypes.string.isRequired
+    label: PropTypes.string.isRequired
 };
