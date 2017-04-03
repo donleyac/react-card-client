@@ -18,9 +18,6 @@ const store = createStore(
 );
 
 socket.on('state', state => store.dispatch(setState(state)));
-// socket.on('state', state => console.log("From Store", store.getState()));
-// socket.on('state',store.dispatch(setState(InitialState)));
-// console.log("From JSON",InitialState);
 
 ReactDOM.render(
 <Provider store={store}>

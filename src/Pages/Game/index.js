@@ -1,6 +1,7 @@
 import React, {PureComponent, PropTypes} from 'react';
 // import Card from '../../Components/Card/index.js';
 // import Collection from '../../Components/Collection/index.js';
+import {List} from 'immutable';
 import Indicator from '../../Components/Indicator/index.js';
 import Counter from '../../Components/Counter/index.js';
 import {connect} from 'react-redux';
@@ -62,9 +63,9 @@ Game.PropTypes = {
 function mapStateToProps(state) {
   console.log("Component State",state);
   return {
-    playersById: state.get('playersById'),
-    collections: state.get('collections'),
-    counters: state.get('counters')
+    playersById: state.get('playersById') || new List(),
+    collections: state.get('collections') || new List(),
+    counters: state.get('counters') || new List()
   };
 }
 export const GameContainer = connect(mapStateToProps, actionCreators)(Game);
