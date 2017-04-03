@@ -20,10 +20,10 @@ export default class Game extends PureComponent {
     //Indicators
     playersById.forEach(function(value, key, map){
       indic_list.push(<p className="section-name">{playersById.get(key).get('name')+"'s Indicators"}</p>)
-      playersById.get(key).get('indicators').forEach(function(value, key, map){
-          indic_list.push(<Indicator label={key}>{value}</Indicator>)
-      });
-    });
+      playersById.get(key).get('indicators').forEach(function(value, key2, map){
+          indic_list.push(<Indicator playerId={key} action={this.props.modIndicator} label={key2}>{value}</Indicator>)
+      }, this);
+    },this);
 
     //Collections
     collections.forEach(function(value, key, map) {
@@ -61,7 +61,6 @@ Game.PropTypes = {
   counters: PropTypes.object.isRequired
 }
 function mapStateToProps(state) {
-  console.log("Component State",state);
   return {
     playersById: state.get('playersById') || new List(),
     collections: state.get('collections') || new List(),
