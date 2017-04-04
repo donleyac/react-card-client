@@ -5,11 +5,11 @@ export default class Indicator extends PureComponent {
         super(props);
         this.handleChange = this.handleChange.bind(this);
     }
-    handleClick(op) {
-      this.props.action(this.props.playerId, this.props.label, op);
+    handleClick(change) {
+      this.props.action(this.props.playerId, this.props.label, change);
     }
     handleChange(event) {
-        this.props.action(this.props.playerId, event.target.value)
+        this.props.action(this.props.playerId, this.props.label, parseInt(event.target.value), "replace")
     }
     render() {
         return (

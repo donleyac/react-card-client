@@ -2,13 +2,14 @@ export function setState(state) {
   return {type: 'SET_STATE',state};
 }
 
-export function modIndicator(playerId, indicator, modifier) {
+export function modIndicator(playerId, indicator, value, op) {
   return {
     meta: {remote: true},
     type: 'INDICATORS',
     playerId: playerId,
     indicator: indicator,
-    modifier: modifier};
+    value: value,
+    op: op};
 }
 export function modCollection(collection, property, value, op, category) {
   return {
