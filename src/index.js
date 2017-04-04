@@ -13,14 +13,15 @@ import InitialState from './initial.json';
 import './index.scss';
 
 const socket = io(`${location.protocol}//${location.hostname}:8090`);
-socket.on('state', state =>
-  store.dispatch(setState(state))
-);
 
 const createStoreWithMiddleware = applyMiddleware(
   socketMiddleware(socket)
 )(createStore);
 const store = createStoreWithMiddleware(reducer);
+
+socket.on('state', state =>
+  store.dispatch(setState(state))
+);
 
 ReactDOM.render(
 <Provider store={store}>
