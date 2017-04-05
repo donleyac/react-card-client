@@ -17,6 +17,18 @@ export default class Game extends PureComponent {
     let indic_list = [];
     let coll_list = [];
 
+    let board = document.getElementById("gameboard");
+    if (board) {
+      let game_dim = [board.style.height, board.style.width];
+      console.log(board);
+      let xPos = board.offsetParent;
+      let yPos = board.clientTop;
+      let game_pos = [xPos, yPos];
+
+      console.log(game_dim);
+      console.log(game_pos);
+    }
+
     //Indicators
     playersById.forEach(function(value, key, map){
       indic_list.push(<p className="section-name">{playersById.get(key).get('name')+"'s Indicators"}</p>)
@@ -42,6 +54,7 @@ export default class Game extends PureComponent {
             <span className="collections">
               {coll_list}
             </span>
+            <div id="gameboard"></div>
           </div>
           <div className="right-col">
             <div className="counters">
@@ -54,11 +67,11 @@ export default class Game extends PureComponent {
       )
   }
 }
-
 Game.PropTypes = {
   playersById:  PropTypes.object.isRequired,
   collections: PropTypes.object.isRequired,
-  counters: PropTypes.object.isRequired
+  counters: PropTypes.object.isRequired,
+  modIndicator: PropTypes.func.isRequired
 }
 function mapStateToProps(state) {
   return {

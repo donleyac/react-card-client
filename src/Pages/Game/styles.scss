@@ -8,6 +8,8 @@
   }
   .center-col {
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
   }
   .collections {
     display: flex;
@@ -15,5 +17,9 @@
     span {
       padding: 5px;
     }
+  }
+  #gameboard {
+    flex-grow: 1;
+    width: 100%;
   }
 }

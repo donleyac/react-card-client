@@ -26,5 +26,6 @@ export default class Indicator extends PureComponent {
 }
 
 Indicator.propTypes = {
-    label: PropTypes.string.isRequired
+    label: PropTypes.string.isRequired,
+    action: PropTypes.func.isRequired
 };
