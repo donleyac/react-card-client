@@ -9,6 +9,10 @@ import * as actionCreators from './../../action_creators.js';
 import './styles.scss';
 
 export default class Game extends PureComponent {
+  componentDidMount() {
+    let board = document.getElementById("gameboard");
+    console.log("getBoundingClientRect" , board.getBoundingClientRect());
+  }
   render() {
     let playersById = this.props.playersById;
     let collections = this.props.collections;
@@ -16,18 +20,6 @@ export default class Game extends PureComponent {
 
     let indic_list = [];
     let coll_list = [];
-
-    let board = document.getElementById("gameboard");
-    if (board) {
-      let game_dim = [board.style.height, board.style.width];
-      console.log(board);
-      let xPos = board.offsetParent;
-      let yPos = board.clientTop;
-      let game_pos = [xPos, yPos];
-
-      console.log(game_dim);
-      console.log(game_pos);
-    }
 
     //Indicators
     playersById.forEach(function(value, key, map){
