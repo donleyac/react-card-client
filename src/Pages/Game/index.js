@@ -1,5 +1,5 @@
 import React, {PureComponent, PropTypes} from 'react';
-// import Card from '../../Components/Card/index.js';
+import Card from '../../Components/Card/index.js';
 // import Collection from '../../Components/Collection/index.js';
 import {List} from 'immutable';
 import Indicator from '../../Components/Indicator/index.js';
@@ -9,10 +9,6 @@ import * as actionCreators from './../../action_creators.js';
 import './styles.scss';
 
 export default class Game extends PureComponent {
-  componentDidMount() {
-    let board = document.getElementById("gameboard");
-    console.log("getBoundingClientRect" , board.getBoundingClientRect());
-  }
   render() {
     let playersById = this.props.playersById;
     let collections = this.props.collections;
@@ -46,7 +42,11 @@ export default class Game extends PureComponent {
             <span className="collections">
               {coll_list}
             </span>
-            <div id="gameboard"></div>
+            <div id="gameboard" ref={(node) => this.getProperties(node)}>
+              <Card pos={[50,100]}>🂡</Card>
+              <Card pos={[40,200]}>🂡</Card>
+            </div>
+            <span className="hand"></span>
           </div>
           <div className="right-col">
             <div className="counters">
@@ -57,6 +57,11 @@ export default class Game extends PureComponent {
           </div>
         </div>
       )
+  }
+  getProperties(node){
+    if (node) {
+        console.log("getProperties", node.getBoundingClientRect());
+      }
   }
 }
 Game.PropTypes = {
