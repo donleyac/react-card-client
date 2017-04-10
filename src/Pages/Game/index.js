@@ -85,7 +85,8 @@ Game.PropTypes = {
   playersById:  PropTypes.object.isRequired,
   collections: PropTypes.object.isRequired,
   counters: PropTypes.object.isRequired,
-  modIndicator: PropTypes.func.isRequired
+  modIndicator: PropTypes.func.isRequired,
+  modCollection: PropTypes.func.isRequired
 }
 function mapStateToProps(state) {
   return {
