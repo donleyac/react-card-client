@@ -15,7 +15,7 @@ export default class Game extends PureComponent {
     let counters = this.props.counters;
 
     let gameboard = collections.get("gameboard");
-    gameboard?console.log("gameboard",gameboard.get("content")):null;
+    // gameboard?console.log("gameboard",gameboard.get("content")):null;
 
     let indic_list = [];
     let coll_list = [];
@@ -40,16 +40,17 @@ export default class Game extends PureComponent {
 
     //gameboard
     gameboard?gameboard.get("content").map(function(row, index){
+      //TODO move this logic inside of the card component, if it doesnt exist in the ui_mapper give it an unidentified card style
       if(ui_mapper.hasOwnProperty(row.get(0))){
         let type = row.get(0);
         let id = row.get(1);
         let pos=[row.get(2),row.get(3)];
         let angle=row.get(4);
         if (ui_mapper[type].hasOwnProperty(id)){
-          game_list.push(<Card pos={pos}>{ui_mapper[type][id]}</Card>);
+          game_list.push(<Card onClick={this.collectionClick.bind(this)} row={row} pos={pos}>{ui_mapper[type][id]}</Card>);
         }
       }
-    }):null;
+    },this):null;
 
     return (
         <div className="frame">
@@ -75,9 +76,14 @@ export default class Game extends PureComponent {
         </div>
       )
   }
+  collectionClick(row){
+    let new_x=row.get(2)+10;
+    let new_y=row.get(3)+5;
+    this.props.modCollection("gameboard", "content", [row.get(0),row.get(1),new_x,new_y,row.get(4)],"chg",row);
+  }
   getProperties(node){
     if (node) {
-        console.log("getProperties", node.getBoundingClientRect());
+        // console.log("getProperties", node.getBoundingClientRect());
       }
   }
 }

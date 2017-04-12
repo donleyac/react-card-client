@@ -9,7 +9,7 @@ export default class Card extends PureComponent {
         "fontSize": "100px",
         background:  "white"
       };
-      return <span style={style}>{this.props.children}</span>
+      return <span onClick={()=>this.props.onClick(this.props.row)} style={style}>{this.props.children}</span>
     }
 }
 Card.PropTypes = {
