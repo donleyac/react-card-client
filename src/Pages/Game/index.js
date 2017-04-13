@@ -37,7 +37,6 @@ export default class Game extends PureComponent {
           coll_list.push(<span>Control: {value}</span>);
       });
     });
-
     //gameboard
     gameboard?gameboard.get("content").map(function(row, index){
       //TODO move this logic inside of the card component, if it doesnt exist in the ui_mapper give it an unidentified card style
@@ -47,11 +46,10 @@ export default class Game extends PureComponent {
         let pos=[row.get(2),row.get(3)];
         let angle=row.get(4);
         if (ui_mapper[type].hasOwnProperty(id)){
-          game_list.push(<Card onClick={this.collectionClick.bind(this)} row={row} pos={pos}>{ui_mapper[type][id]}</Card>);
+          game_list.push(<Card onClick={this.itemClick.bind(this)} row={row} pos={pos}>{ui_mapper[type][id]}</Card>);
         }
       }
     },this):null;
-
     return (
         <div className="frame">
           <div className="left-col">
@@ -61,7 +59,7 @@ export default class Game extends PureComponent {
             <span className="collections">
               {coll_list}
             </span>
-            <div id="gameboard" ref={(node) => this.getProperties(node)}>
+            <div onClick={this.getClickPosition.bind(this, gameboard)} id="gameboard" ref={(node) => this.getProperties(node)}>
               {game_list}
             </div>
             <span className="hand"></span>
@@ -76,10 +74,14 @@ export default class Game extends PureComponent {
         </div>
       )
   }
-  collectionClick(row){
+  itemClick(row){
     let new_x=row.get(2)+10;
     let new_y=row.get(3)+5;
     this.props.modCollection("gameboard", "content", [row.get(0),row.get(1),new_x,new_y,row.get(4)],"chg",row);
+  }
+  getClickPosition(e, gameboard){
+    console.log(e.clientX, e.clientY);
+    console.log(gameboard)
   }
   getProperties(node){
     if (node) {
