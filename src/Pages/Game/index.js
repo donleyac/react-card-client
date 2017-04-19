@@ -83,8 +83,8 @@ export default class Game extends PureComponent {
     let new_x;
     let new_y;
     gameboard.get("content").map(function(row){
-      new_x = row.get(2) + (e.clientX * .2);
-      new_y = row.get(3) + (e.clientY * .2);
+      new_x = e.clientX;
+      new_y = e.clientY;
       this.props.modCollection("gameboard", "content", [row.get(0),row.get(1),new_x,new_y,row.get(4)],"chg",row);
     },this);
   }
