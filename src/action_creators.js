@@ -11,13 +11,12 @@ export function modIndicator(playerId, indicator, value, op) {
     value: value,
     op: op};
 }
-export function modCollection(collection, property, value, op, category) {
+export function modCollection(collection, property, value, op) {
   return {
     meta: {remote: true},
     type:'COLLECTIONS',
     collection:collection,
     property:property,
     value:value,
-    op:op,
-    category:category};
+    op:op};
 }

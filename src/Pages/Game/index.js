@@ -75,9 +75,9 @@ export default class Game extends PureComponent {
       )
   }
   itemClick(row){
-    let new_x=row.get(2)+10;
-    let new_y=row.get(3)+5;
-    this.props.modCollection("gameboard", "content", [row.get(0),row.get(1),new_x,new_y,row.get(4)],"chg",row);
+    let new_x=row.get(2)+Math.floor((Math.random() * 100) + 1);
+    let new_y=row.get(3)+Math.floor((Math.random() * 100) + 1);
+    this.props.modCollection("gameboard", "content", [row.get(0),row.get(1),new_x,new_y,row.get(4),row.get(5)],"chg");
   }
   getClickPosition(gameboard, e){
     let new_x;
@@ -85,13 +85,16 @@ export default class Game extends PureComponent {
     gameboard.get("content").map(function(row){
       new_x = e.clientX;
       new_y = e.clientY;
-      this.props.modCollection("gameboard", "content", [row.get(0),row.get(1),new_x,new_y,row.get(4)],"chg",row);
+      this.props.modCollection("gameboard", "content", [row.get(0),row.get(1),new_x,new_y,row.get(4),row.get(5)],"chg");
     },this);
   }
   getProperties(node){
     if (node) {
-        // console.log("getProperties", node.getBoundingClientRect());
+        console.log("getProperties", node.getBoundingClientRect());
       }
+  }
+  canMove(){
+
   }
 }
 Game.PropTypes = {
