@@ -15,13 +15,11 @@ export default class Game extends PureComponent {
     let counters = this.props.counters;
 
     let gameboard = collections.get("gameboard");
-    // gameboard?console.log("gameboard",gameboard.get("content")):null;
-
     let indic_list = [];
     let coll_list = [];
     let game_list = [];
 
-
+    console.log("collections",this.props.collections);
     //Indicators
     playersById.forEach(function(value, key, map){
       indic_list.push(<p className="section-name">{playersById.get(key).get('name')+"'s Indicators"}</p>)
@@ -59,7 +57,7 @@ export default class Game extends PureComponent {
             <span className="collections">
               {coll_list}
             </span>
-            <div onClick={this.getClickPosition.bind(this, gameboard)} id="gameboard" ref={(node) => this.getProperties(node)}>
+            <div onClick={this.getClickPosition.bind(this, gameboard)} id="gameboard" ref={(node) => this.setSize(node,"gameboard")}>
               {game_list}
             </div>
             <span className="hand"></span>
@@ -88,13 +86,14 @@ export default class Game extends PureComponent {
       this.props.modCollection("gameboard", "content", [row.get(0),row.get(1),new_x,new_y,row.get(4),row.get(5)],"chg");
     },this);
   }
-  getProperties(node){
-    if (node) {
-        console.log("getProperties", node.getBoundingClientRect());
-      }
-  }
-  canMove(){
-
+  //ToDo probably just put in componentDidMount to prevent it from constantly executing
+  setSize(node,collect){
+    // if(node){
+    //   let clientRect = node.getBoundingClientRect();
+    //   let position = [clientRect.left, clientRect.top];
+    //   let size = [clientRect.width, clientRect.height];
+    //   this.props.setCollectionPosition(collect, position, size);
+    // }
   }
 }
 Game.PropTypes = {
@@ -102,7 +101,8 @@ Game.PropTypes = {
   collections: PropTypes.object.isRequired,
   counters: PropTypes.object.isRequired,
   modIndicator: PropTypes.func.isRequired,
-  modCollection: PropTypes.func.isRequired
+  modCollection: PropTypes.func.isRequired,
+  setCollectionPosition: PropTypes.func.isRequired
 }
 function mapStateToProps(state) {
   return {

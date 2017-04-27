@@ -20,3 +20,13 @@ export function modCollection(collection, property, value, op) {
     value:value,
     op:op};
 }
+
+export function setCollectionSize(collection, position, size) {
+  return {
+    meta: {local: true},
+    type: 'COLLECTION_POS',
+    collection: collection,
+    position: position,
+    size: size
+  }
+}
