@@ -1,6 +1,6 @@
 import React, {PureComponent, PropTypes} from 'react';
 import Card from '../../Components/Card/index.js';
-import {List} from 'immutable';
+import {List, is} from 'immutable';
 import Indicator from '../../Components/Indicator/index.js';
 import Counter from '../../Components/Counter/index.js';
 import {connect} from 'react-redux';
@@ -78,22 +78,31 @@ export default class Game extends PureComponent {
     this.props.modCollection("gameboard", "content", [row.get(0),row.get(1),new_x,new_y,row.get(4),row.get(5)],"chg");
   }
   getClickPosition(gameboard, e){
-    let new_x;
-    let new_y;
-    gameboard.get("content").map(function(row){
-      new_x = e.clientX;
-      new_y = e.clientY;
-      this.props.modCollection("gameboard", "content", [row.get(0),row.get(1),new_x,new_y,row.get(4),row.get(5)],"chg");
-    },this);
+    let collection = this.props.collections.get("gameboard");
+    if(collection){
+      let collection_pos = collection.get("pos");
+      let new_x;
+      let new_y;
+      gameboard.get("content").map(function(row){
+        new_x = e.clientX - collection_pos.get(0);
+        new_y = e.clientY - collection_pos.get(1);
+        this.props.modCollection("gameboard", "content", [row.get(0),row.get(1),new_x,new_y,row.get(4),row.get(5)],"chg");
+      },this);
+      console.log("collection_pos",collection.get("pos"));
+    }
   }
   //ToDo probably just put in componentDidMount to prevent it from constantly executing
   setSize(node,collect){
-    // if(node){
-    //   let clientRect = node.getBoundingClientRect();
-    //   let position = [clientRect.left, clientRect.top];
-    //   let size = [clientRect.width, clientRect.height];
-    //   this.props.setCollectionPosition(collect, position, size);
-    // }
+    let collection = this.props.collections.get(collect);
+    if(node && collection){
+      let collection_pos = collection.get("pos");
+      let clientRect = node.getBoundingClientRect();
+      let position = List([clientRect.left, clientRect.top]);
+      let size = [clientRect.width, clientRect.height];
+      if(!is(collection_pos,position)){
+        this.props.setCollectionPosition(collect, position, size);
+      }
+    }
   }
 }
 Game.PropTypes = {
