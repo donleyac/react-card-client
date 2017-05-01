@@ -19,7 +19,6 @@ export default class Game extends PureComponent {
     let coll_list = [];
     let game_list = [];
 
-    console.log("collections",this.props.collections);
     //Indicators
     playersById.forEach(function(value, key, map){
       indic_list.push(<p className="section-name">{playersById.get(key).get('name')+"'s Indicators"}</p>)
@@ -84,14 +83,15 @@ export default class Game extends PureComponent {
       let new_x;
       let new_y;
       gameboard.get("content").map(function(row){
-        new_x = e.clientX - collection_pos.get(0);
-        new_y = e.clientY - collection_pos.get(1);
+        // new_x = e.clientX - collection_pos.get(0);
+        // new_y = e.clientY - collection_pos.get(1);
+        new_x = e.clientX;
+        new_y = e.clientY;
         this.props.modCollection("gameboard", "content", [row.get(0),row.get(1),new_x,new_y,row.get(4),row.get(5)],"chg");
       },this);
       console.log("collection_pos",collection.get("pos"));
     }
   }
-  //ToDo probably just put in componentDidMount to prevent it from constantly executing
   setSize(node,collect){
     let collection = this.props.collections.get(collect);
     if(node && collection){
