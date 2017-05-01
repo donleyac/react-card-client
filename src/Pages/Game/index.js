@@ -1,11 +1,13 @@
 import React, {PureComponent, PropTypes} from 'react';
-import Card from '../../Components/Card/index.js';
+import {Card} from '../../Components/Card/index.js';
 import {List, is} from 'immutable';
 import Indicator from '../../Components/Indicator/index.js';
 import Counter from '../../Components/Counter/index.js';
 import {connect} from 'react-redux';
 import * as actionCreators from './../../action_creators.js';
 import ui_mapper from './../../ui_mapping.json';
+import {DragDropContext} from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 import './styles.scss';
 
 export default class Game extends PureComponent {
@@ -120,4 +122,5 @@ function mapStateToProps(state) {
     counters: state.get('counters') || new  List()
   };
 }
+export const GameContext = DragDropContext(HTML5Backend)(Game);
 export const GameContainer = connect(mapStateToProps, actionCreators)(Game);

@@ -1,7 +1,9 @@
 import React, {PureComponent, PropTypes} from 'react';
+import {DragSource} from 'react-dnd';
 import './styles.scss'
-export default class Card extends PureComponent {
+export class Card extends PureComponent {
     render() {
+      const {connectDragSource, isDragging} = this.props;
       let style = {
         position: "absolute",
         left: this.props.pos[0],
@@ -12,6 +14,23 @@ export default class Card extends PureComponent {
       return <span onClick={()=>this.props.onClick(this.props.row)} style={style}>{this.props.children}</span>
     }
 }
+
+const cardSource = {
+  beginDrag(props) {
+    return {};
+  }
+};
+function collect(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+    connectDragPreview: connect.dragPreview(),
+    isDragging: monitor.isDragging()
+  }
+}
 Card.PropTypes = {
+  connectDragSource: PropTypes.func.isRequired,
+  connectDragPreview: PropTypes.func.isRequired,
+  isDragging: PropTypes.bool.isRequired,
   pos: PropTypes.array.isRequired
 }
+export default DragSource("card", cardSource, collect)(Card);
