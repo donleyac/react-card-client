@@ -11,6 +11,7 @@ export class Card extends PureComponent {
         "fontSize": "100px",
         background:  "white"
       };
+      //Breaking change
       return connectDragSource(<span
         onClick={()=>this.props.onClick(this.props.row)}
         style={style}>{this.props.children}</span>);
