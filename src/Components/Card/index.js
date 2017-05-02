@@ -11,13 +11,15 @@ export class Card extends PureComponent {
         "fontSize": "100px",
         background:  "white"
       };
-      return <span onClick={()=>this.props.onClick(this.props.row)} style={style}>{this.props.children}</span>
+      return connectDragSource(<span
+        onClick={()=>this.props.onClick(this.props.row)}
+        style={style}>{this.props.children}</span>);
     }
 }
-
-const cardSource = {
+const type="card";
+const spec = {
   beginDrag(props) {
-    return {};
+    return {id: props.id};
   }
 };
 function collect(connect, monitor) {
@@ -31,6 +33,8 @@ Card.PropTypes = {
   connectDragSource: PropTypes.func.isRequired,
   connectDragPreview: PropTypes.func.isRequired,
   isDragging: PropTypes.bool.isRequired,
-  pos: PropTypes.array.isRequired
+  pos: PropTypes.array.isRequired,
+  onClick: PropTypes.func.isRequired,
+  row: PropTypes.array.isRequired
 }
-export default DragSource("card", cardSource, collect)(Card);
+export default DragSource(type, spec, collect)(Card);
