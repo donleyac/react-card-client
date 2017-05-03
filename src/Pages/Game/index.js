@@ -1,16 +1,16 @@
 import React, {PureComponent, PropTypes} from 'react';
-import {Card} from '../../Components/Card/index.js';
+import Card from '../../Components/Card/index.js';
 import {List, is} from 'immutable';
 import Indicator from '../../Components/Indicator/index.js';
 import Counter from '../../Components/Counter/index.js';
 import {connect} from 'react-redux';
 import * as actionCreators from './../../action_creators.js';
 import ui_mapper from './../../ui_mapping.json';
-import {DragDropContext} from 'react-dnd';
+import {DropTarget,DragDropContext} from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import './styles.scss';
 
-export default class Game extends PureComponent {
+export class Game extends PureComponent {
   render() {
     let playersById = this.props.playersById;
     let collections = this.props.collections;
@@ -49,6 +49,19 @@ export default class Game extends PureComponent {
         }
       }
     },this):null;
+
+    const specTarget = {
+      drop(props) {
+        this.itemClick(props.row, props.pos);
+      }
+    };
+    function collectTarget(connect, monitor) {
+      return {
+        connectDropTarget: connect.dropTarget(),
+        isOver: monitor.isOver()
+      };
+    };
+
     return (
         <div className="frame">
           <div className="left-col">
@@ -73,10 +86,9 @@ export default class Game extends PureComponent {
         </div>
       )
   }
-  itemClick(row){
-    let new_x=row.get(2)+Math.floor((Math.random() * 100) + 1);
-    let new_y=row.get(3)+Math.floor((Math.random() * 100) + 1);
-    this.props.modCollection("gameboard", "content", [row.get(0),row.get(1),new_x,new_y,row.get(4),row.get(5)],"chg");
+  //Todo rework to be similiar to moveKnight
+  itemClick(row, pos){
+    this.props.modCollection("gameboard", "content", [row.get(0),row.get(1),pos[0],pos[1],row.get(4),row.get(5)],"chg");
   }
   getClickPosition(gameboard, e){
     let collection = this.props.collections.get("gameboard");
@@ -122,5 +134,5 @@ function mapStateToProps(state) {
     counters: state.get('counters') || new  List()
   };
 }
-export const GameContext = DragDropContext(HTML5Backend)(Game);
 export const GameContainer = connect(mapStateToProps, actionCreators)(Game);
+export default DragDropContext(HTML5Backend)(GameContainer);
